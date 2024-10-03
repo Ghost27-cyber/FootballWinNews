@@ -17,7 +17,7 @@ enum APIError: Error, LocalizedError {
         case .fetchingMatchesFailed(let league, let error) :
             return "Error fetching matches for league \(league): \(error)"
         case .decodingFailed(let league, let error):
-            return "Failed to decode JSON data"
+            return "Failed to decode JSON data league: \(league), error: \(error)"
         case .multipleErrors(let errors):
             return "Multiple errors occurred: \(errors.map { $0.localizedDescription }.joined(separator: ", "))"
         case .rateLimitExceeded(let message):

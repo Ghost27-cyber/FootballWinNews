@@ -65,6 +65,8 @@ class MainViewController: UIViewController, MainViewModelDelegate {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    public let loaderView = LoadingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,24 +83,31 @@ class MainViewController: UIViewController, MainViewModelDelegate {
     }
 
     func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+//        view.addSubview(activityIndicator)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+        view.addSubview(loaderView)
+        loaderView.isHidden = true
+        loaderView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func startLoadingAnimation() {
-        activityIndicator.isHidden = false
-        self.view.bringSubviewToFront(activityIndicator)
-        activityIndicator.startAnimating()
+//        activityIndicator.isHidden = false
+//        self.view.bringSubviewToFront(activityIndicator)
+//        activityIndicator.startAnimating()
+        loaderView.isHidden = false
+        self.view.bringSubviewToFront(loaderView)
+        loaderView.setupLoading()
+        
     }
     
     func stopLoadingAnimation() {
-        activityIndicator.isHidden = true
-        self.view.bringSubviewToFront(activityIndicator)
-        activityIndicator.stopAnimating()
+        loaderView.isHidden = true
     }
     
     func showError(str: String) {

@@ -44,9 +44,8 @@ class MainViewModel {
         }
     }
     
-    // Метод для сброса и перезагрузки данных
     public func reloadData(completion: @escaping () -> Void) {
-        matchesManager?.resetCurrentPage()  // Сброс currentPage в 0
+        matchesManager?.resetCurrentPage()
         matchesManager?.reloadMatches { [weak self] result in
             switch result {
             case .success:
@@ -61,7 +60,6 @@ class MainViewModel {
         }
     }
     
-    // Функция для загрузки следующих 20 матчей
     public func getNextTwentyMatches(sortedBy sortOrder: MatchSortOrder, completion: @escaping () -> Void) {
         matchesManager?.loadMoreMatches(sortedBy: sortOrder) { [weak self] result in
             switch result {
@@ -75,7 +73,6 @@ class MainViewModel {
         }
     }
 
-    // Функция для загрузки матчей по лиге
     public func getNextTwentyMatchesWith(leagueId: String, sortedBy sortOrder: MatchSortOrder, completion: @escaping () -> Void) {
         matchesManager?.loadMoreMatchesFrom(leagueId: leagueId, sortedBy: sortOrder) { [weak self] result in
             switch result {
@@ -89,7 +86,6 @@ class MainViewModel {
         }
     }
     
-    // Получение конкретного матча по индексу
     public func getMatch(by index: Int) -> Match? {
         guard index >= 0 && index < matches.count else { return nil }
         return matches[index]
@@ -97,7 +93,6 @@ class MainViewModel {
     
     private func handleError(_ error: Error) {
         DispatchQueue.main.async {
-            // Сообщение делегату или обработка ошибки в интерфейсе
             self.delegate?.showError(message: "Failed to load data: \(error.localizedDescription)")
         }
     }

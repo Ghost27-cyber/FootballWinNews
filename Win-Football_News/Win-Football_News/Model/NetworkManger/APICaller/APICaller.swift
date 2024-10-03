@@ -4,14 +4,14 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     private let apiKey = NetworkConstant.token
-    
+
     var leagueConverter: [String: String] = ["PL": "Premier League",
-                                           "SA": "Seria A",
-                                           "BL1": "Bundesliga",
-                                           "PD": "LaLiga",
-                                           "CL": "Champions League",
+                                             "SA": "Seria A",
+                                             "BL1": "Bundesliga",
+                                             "PD": "LaLiga",
+                                             "CL": "Champions League",
     ]
-    
+
     private init() {}
 
     private func fetchMatches(for league: LeagueIds, completion: @escaping (Result<[Match?], Error>) -> Void) {
@@ -31,17 +31,14 @@ final class APICaller {
             }
 
             guard let data = data else {
-                
                 completion(.failure(APIError.noData(league: league)))
                 return
             }
-            
+
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 if let matchesResponse = json as? [String: Any],
-                   let message = matchesResponse["message"] as? String,
-                   let errorCode = matchesResponse["errorCode"] as? Int, errorCode == 429 {
-                    // Обработка ошибки 429
+                   let message = matchesResponse["message"] as? String{
                     completion(.failure(APIError.rateLimitExceeded(message: message)))
                     return
                 }
@@ -51,15 +48,14 @@ final class APICaller {
             }
 
             do {
-                //ADD
                 let decoder = JSONDecoder()
                 var matchesResponse = try decoder.decode(MatchesResponse.self, from: data)
-                
-                
+
                 guard let matches = matchesResponse.matches else {
                     completion(.failure(APIError.decodingFailed(league: league, error: NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No matches available"]))))
                     return
                 }
+
                 matchesResponse.matches = matches.map { match in
                     var updatedMatch = match
                     updatedMatch.leagueId = self.leagueConverter[league.rawValue]!
@@ -70,7 +66,6 @@ final class APICaller {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
                     dateFormatter.timeZone = TimeZone(identifier: "UTC")
-
 
                     guard let matchDate = dateFormatter.date(from: match.utcDate) else {
                         return false
@@ -84,38 +79,33 @@ final class APICaller {
         }.resume()
     }
 
-
     func fetchAllMatches(completion: @escaping (Result<[Match], Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var combinedMatches = [Match]()
         var errors = [Error]()
-        
+
         for league in LeagueIds.allCases {
             dispatchGroup.enter()
-            
+
             fetchMatches(for: league) { result in
                 switch result {
                 case .success(let matches):
                     let filteredMatches = matches.compactMap { match -> Match? in
                         guard let match = match else { return nil }
-                        if match.id != 524120 {
-                            return match
-                        } else {
-                            return nil
-                        }
-
+                        return match
                     }
                     combinedMatches.append(contentsOf: filteredMatches)
                 case .failure(let error):
                     errors.append(error)
                 }
-                
+
                 dispatchGroup.leave()
             }
         }
 
         dispatchGroup.notify(queue: .main) {
-            if errors.isEmpty {
+            print(errors)
+            if !combinedMatches.isEmpty {
                 completion(.success(combinedMatches))
             } else {
                 completion(.failure(APIError.multipleErrors(errors: errors)))
@@ -123,6 +113,7 @@ final class APICaller {
         }
     }
 }
+
 
 struct MatchesResponse: Decodable {
     var matches: [Match]?

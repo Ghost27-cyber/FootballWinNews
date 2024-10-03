@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A38000A2CABC1D800321B8C /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3800092CABC1D800321B8C /* ErrorViewController.swift */; };
+		1A38000C2CAEE7B400321B8C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38000B2CAEE7B400321B8C /* LoadingView.swift */; };
 		1A6B33F82CAB9D14005A74FE /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B33F72CAB9D14005A74FE /* DetailsViewModel.swift */; };
 		1A6B33FA2CAB9D36005A74FE /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B33F92CAB9D36005A74FE /* DateHelper.swift */; };
 		1A6B33FC2CAB9E23005A74FE /* DetailsVC + Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B33FB2CAB9E22005A74FE /* DetailsVC + Action.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		1A3800092CABC1D800321B8C /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		1A38000B2CAEE7B400321B8C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1A6B33F72CAB9D14005A74FE /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		1A6B33F92CAB9D36005A74FE /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		1A6B33FB2CAB9E22005A74FE /* DetailsVC + Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsVC + Action.swift"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				1AD6246F2CAB72470002F2AE /* FilterView.swift */,
 				1AD624712CAB7F7C0002F2AE /* MainVC + Filter.swift */,
 				1A3800092CABC1D800321B8C /* ErrorViewController.swift */,
+				1A38000B2CAEE7B400321B8C /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				1A38000A2CABC1D800321B8C /* ErrorViewController.swift in Sources */,
 				1A83C4B22CABA4610092A6D5 /* TeamSelectionView.swift in Sources */,
 				1AD6246E2CAB651A0002F2AE /* MainVC + sort.swift in Sources */,
+				1A38000C2CAEE7B400321B8C /* LoadingView.swift in Sources */,
 				1AEE3DF22CA7753D00C93E60 /* MainViewModel.swift in Sources */,
 				1AEE3DFF2CA7787700C93E60 /* Season.swift in Sources */,
 				1AEE3DCF2CA5D47500C93E60 /* MainViewController.swift in Sources */,

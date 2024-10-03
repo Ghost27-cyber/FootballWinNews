@@ -140,7 +140,7 @@ class TeamResultsFetcher {
               let awayTeam = match["awayTeam"] as? [String: Any],
               let homeTeamName = homeTeam["name"] as? String,
               let awayTeamName = awayTeam["name"] as? String,
-              let homeTeamId = homeTeam["id"] as? Int,
+              let _ = homeTeam["id"] as? Int,
               let utcDate = match["utcDate"] as? String else {
             return nil
         }

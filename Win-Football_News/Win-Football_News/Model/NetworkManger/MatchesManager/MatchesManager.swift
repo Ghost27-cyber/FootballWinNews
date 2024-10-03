@@ -25,6 +25,7 @@ final class MatchesManager {
     }
     
     private func loadInitialMatches(completion: @escaping (Result<Void, MatchesManagerError>) -> Void) {
+        print("load initial matches")
         loadMatchesFromAPI { [weak self] result in
             switch result {
             case .success(let matches):
@@ -37,6 +38,7 @@ final class MatchesManager {
     }
     
     func reloadMatches(completion: @escaping (Result<Void, MatchesManagerError>) -> Void) {
+        print("reload")
         currentPage = 0
         currentLeague = nil
         currentSortOrder = .ascending
@@ -46,13 +48,14 @@ final class MatchesManager {
     }
 
     func loadMoreMatches(sortedBy order: MatchSortOrder, completion: @escaping (Result<[Match], MatchesManagerError>) -> Void) {
+        print("load more")
         updatePaginationSettings(for: nil, sortedBy: order)
         
         loadPaginatedMatches(from: allMatches, sortedBy: order, completion: completion)
     }
 
     func loadMoreMatchesFrom(leagueId: String, sortedBy order: MatchSortOrder, completion: @escaping (Result<[Match], MatchesManagerError>) -> Void) {
-        
+        print("load more from \(leagueId)")
         updatePaginationSettings(for: leagueId, sortedBy: order)
         let filteredMatches = allMatches.filter { $0.leagueId == leagueId }
         loadPaginatedMatches(from: filteredMatches, sortedBy: order, completion: completion)
@@ -63,6 +66,7 @@ final class MatchesManager {
     }
 
     private func updatePaginationSettings(for leagueId: String?, sortedBy order: MatchSortOrder) {
+        print("updatePaginationSettings")
         if currentSortOrder != order || currentLeague != leagueId {
             currentPage = 0
             currentSortOrder = order
@@ -72,6 +76,7 @@ final class MatchesManager {
     }
 
     private func loadPaginatedMatches(from matches: [Match], sortedBy order: MatchSortOrder, completion: @escaping (Result<[Match], MatchesManagerError>) -> Void) {
+        print("load paginated matches")
         let startIndex: Int
         let endIndex: Int
 
@@ -104,7 +109,6 @@ final class MatchesManager {
     private func loadLogosSequentially(matches: [Match], index: Int, completion: @escaping (Result<[Match], MatchesManagerError>) -> Void) {
         var matches = matches
         guard index < matches.count else {
-            // Завершить, когда все матчи обработаны
             completion(.success(matches))
             return
         }
@@ -139,18 +143,19 @@ final class MatchesManager {
         }
 
         group.notify(queue: .main) {
-            // Продолжить с обработкой следующего матча
             self.loadLogosSequentially(matches: matches, index: index + 1, completion: completion)
         }
     }
 
 
     private func loadMatchesFromAPI(completion: @escaping (Result<[Match], Error>) -> Void) {
+        print("fetch all matches")
         APICaller.shared.fetchAllMatches { result in
             switch result {
             case .success(let matches):
                 completion(.success(matches))
             case .failure(let error):
+                print(error)
                 completion(.failure(error))
             }
         }
