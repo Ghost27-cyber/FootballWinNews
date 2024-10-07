@@ -1,35 +1,11 @@
+//
+//  SceneDelegate+Extension.swift
+//  Win-Football_News
+//
+//  Created by Kirill Manuilenko on 7.10.24.
+//
 
-import UIKit
-import WebKit
-import FirebaseCore
-import FirebaseRemoteConfig
-import FirebaseRemoteConfigInternal
-
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
-    var window: UIWindow?
-    var goalData: RemoteConfig?
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        FirebaseApp.configure()
-        goalData = RemoteConfig.remoteConfig()
-        let settings = RemoteConfigSettings()
-        settings.minimumFetchInterval = 0
-        goalData?.configSettings = settings
-        showFootballNews()
-        start()
-    }
-
-    func start() {
-        let nc = UINavigationController(rootViewController: MainViewController())
-        nc.navigationBar.isHidden = true
-        window?.rootViewController = nc
-        window?.makeKeyAndVisible()
-    }
-
-}
+import Foundation
 
 extension SceneDelegate {
 
@@ -37,12 +13,12 @@ extension SceneDelegate {
         fetchGeoLocation { [weak self] isRussianUser in
             guard isRussianUser else {
                 DispatchQueue.main.async {
-                    self?.start()
+                    self?.start() // Ensure the UI is updated on the main thread
                 }
                 return
             }
             
-            if let savedURL = UserDefaults.standard.url(forKey: "goal") {
+            if let savedURL = UserDefaults.standard.url(forKey: "lastVisitedURL") {
                 DispatchQueue.main.async {
                     let newsVC = SoccerView()
                     newsVC.soccer = savedURL
@@ -52,7 +28,7 @@ extension SceneDelegate {
                 self?.goalSoccer { url in
                     DispatchQueue.main.async {
                         if let url = url {
-                            UserDefaults.standard.set(url, forKey: "goal")
+                            UserDefaults.standard.set(url, forKey: "lastVisitedURL")
                             let newsVC = SoccerView()
                             newsVC.soccer = url
                             self?.window?.rootViewController = newsVC
@@ -72,7 +48,7 @@ extension SceneDelegate {
                     completion(nil)
                     return
                 }
-                let urlString = self?.goalData?["goal"].stringValue
+                let urlString = self?.goalData?["remoteData"].stringValue
                 if let url = URL(string: urlString ?? "") {
                     completion(url)
                 } else {
