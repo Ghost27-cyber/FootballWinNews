@@ -20,10 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         goalData?.configSettings = settings
         showFootballNews()
         start()
+        
     }
 
     func start() {
-        let nc = UINavigationController(rootViewController: MainViewController())
+//        let nc = UINavigationController(rootViewController: MainViewController())
+        let nc = UINavigationController(rootViewController: TopPlayersViewController())
         nc.navigationBar.isHidden = true
         window?.rootViewController = nc
         window?.makeKeyAndVisible()

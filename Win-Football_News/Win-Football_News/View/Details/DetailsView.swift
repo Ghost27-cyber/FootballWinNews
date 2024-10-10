@@ -7,7 +7,7 @@ class DetailsView: UIView {
     public let logoImageView: UIImageView = {
          let im = UIImageView()
          im.contentMode = .scaleAspectFit
-         im.image = UIImage(named: Resources.Images.logoImage)
+         im.image = UIImage(named: "ballLogoImage")
          return im
      }()
     
@@ -111,8 +111,7 @@ class DetailsView: UIView {
     
     private func setupConstraints() {
         logoImageView.snp.makeConstraints { make in
-            make.width.equalTo(124)
-            make.height.equalTo(37.2)
+            make.size.equalTo(37)
             make.leading.equalToSuperview().offset(17)
             make.top.equalToSuperview().offset(65)
         }
