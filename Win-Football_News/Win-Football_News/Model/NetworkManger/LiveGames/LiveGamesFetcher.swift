@@ -4,7 +4,7 @@ import Foundation
 struct LiveGamesResponse: Codable {
     let get: String
     let parameters: Parameters
-    let errors: [String]
+    let errors: [String: String]?
     let results: Int
     let paging: Paging
     let response: [LiveGame]?
@@ -87,11 +87,12 @@ struct TeamData: Codable {
 
 class LiveGamesFetcher {
     let baseURL = "https://v3.football.api-sports.io"
-        let liveEndpoint = "/odds/live?league="
-        let teamEndpoint = "/teams?id="
-        let apiKey = "5686c463cd600524039ea7adcf771562"
-        let leagueIds = [141]
-
+    let liveEndpoint = "/odds/live?league="
+    let teamEndpoint = "/teams?id="
+    let apiKey = "5686c463cd600524039ea7adcf771562"
+    let leagueIds = [39, 140, 135, 78, 2]
+    static let shared = LiveGamesFetcher()
+    private init() {}
         // Функция для получения данных из нескольких лиг
         func fetchLiveGamesFromMultipleLeagues(completion: @escaping ([LiveGame]?, Error?) -> Void) {
             var allLiveGames: [LiveGame] = []

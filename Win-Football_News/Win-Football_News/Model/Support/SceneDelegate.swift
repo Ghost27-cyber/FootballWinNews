@@ -19,11 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         settings.minimumFetchInterval = 0
         goalData?.configSettings = settings
         showFootballNews()
-//        start()
-        LiveGamesFetcher().fetchLiveGamesFromMultipleLeagues { result, error in
-            print(result)
-            
-        }
+        start()
     }
 
     func start() {

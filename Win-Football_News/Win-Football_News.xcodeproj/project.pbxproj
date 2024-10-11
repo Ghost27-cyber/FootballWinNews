@@ -68,6 +68,11 @@
 		1AFA9F6E2CB97F4D00A83FA5 /* FavouritesVC + CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F6D2CB97F4D00A83FA5 /* FavouritesVC + CollectionView.swift */; };
 		1AFA9F702CB97FD100A83FA5 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F6F2CB97FD100A83FA5 /* FavouritesViewModel.swift */; };
 		1AFA9F722CB98B0400A83FA5 /* FavouritesVC + Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F712CB98B0400A83FA5 /* FavouritesVC + Action.swift */; };
+		1AFA9F752CB9B68000A83FA5 /* LiveGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F742CB9B68000A83FA5 /* LiveGamesViewController.swift */; };
+		1AFA9F772CB9B79300A83FA5 /* LiveGamesVC + CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F762CB9B79300A83FA5 /* LiveGamesVC + CollectionView.swift */; };
+		1AFA9F792CB9B7F800A83FA5 /* LiveGameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F782CB9B7F800A83FA5 /* LiveGameCollectionViewCell.swift */; };
+		1AFA9F7B2CB9BAA100A83FA5 /* LiveGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F7A2CB9BAA100A83FA5 /* LiveGameViewModel.swift */; };
+		1AFA9F7D2CB9C4D400A83FA5 /* LiveGamesVC + Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA9F7C2CB9C4D400A83FA5 /* LiveGamesVC + Action.swift */; };
 		6C7DFCD82CB4396A0044FDFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DFCD72CB4396A0044FDFB /* GoogleService-Info.plist */; };
 		6C7DFCDB2CB43B9A0044FDFB /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 6C7DFCDA2CB43B9A0044FDFB /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		6C7DFCDD2CB43B9A0044FDFB /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C7DFCDC2CB43B9A0044FDFB /* FirebaseRemoteConfig */; };
@@ -139,6 +144,11 @@
 		1AFA9F6D2CB97F4D00A83FA5 /* FavouritesVC + CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritesVC + CollectionView.swift"; sourceTree = "<group>"; };
 		1AFA9F6F2CB97FD100A83FA5 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		1AFA9F712CB98B0400A83FA5 /* FavouritesVC + Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritesVC + Action.swift"; sourceTree = "<group>"; };
+		1AFA9F742CB9B68000A83FA5 /* LiveGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGamesViewController.swift; sourceTree = "<group>"; };
+		1AFA9F762CB9B79300A83FA5 /* LiveGamesVC + CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveGamesVC + CollectionView.swift"; sourceTree = "<group>"; };
+		1AFA9F782CB9B7F800A83FA5 /* LiveGameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameCollectionViewCell.swift; sourceTree = "<group>"; };
+		1AFA9F7A2CB9BAA100A83FA5 /* LiveGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameViewModel.swift; sourceTree = "<group>"; };
+		1AFA9F7C2CB9C4D400A83FA5 /* LiveGamesVC + Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveGamesVC + Action.swift"; sourceTree = "<group>"; };
 		6C7DFCD72CB4396A0044FDFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C7DFCDE2CB43BB40044FDFB /* SoccerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoccerView.swift; sourceTree = "<group>"; };
 		6C7DFCE02CB43BDF0044FDFB /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -313,6 +323,7 @@
 				6C7DFCE22CB43E950044FDFB /* SceneDelegate+Extension.swift */,
 				1A7263CD2CB9606B0018E69B /* NewsViewModel.swift */,
 				1AFA9F6F2CB97FD100A83FA5 /* FavouritesViewModel.swift */,
+				1AFA9F7A2CB9BAA100A83FA5 /* LiveGameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -320,6 +331,7 @@
 		1AEE3DF42CA7773400C93E60 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1AFA9F732CB9B66F00A83FA5 /* LiveGames */,
 				1AFA9F6A2CB97E6400A83FA5 /* Favourites */,
 				1A7263CF2CB96BD70018E69B /* NewsDetails */,
 				1A7263C62CB898C80018E69B /* News */,
@@ -397,6 +409,17 @@
 				1AFA9F712CB98B0400A83FA5 /* FavouritesVC + Action.swift */,
 			);
 			path = Favourites;
+			sourceTree = "<group>";
+		};
+		1AFA9F732CB9B66F00A83FA5 /* LiveGames */ = {
+			isa = PBXGroup;
+			children = (
+				1AFA9F742CB9B68000A83FA5 /* LiveGamesViewController.swift */,
+				1AFA9F762CB9B79300A83FA5 /* LiveGamesVC + CollectionView.swift */,
+				1AFA9F782CB9B7F800A83FA5 /* LiveGameCollectionViewCell.swift */,
+				1AFA9F7C2CB9C4D400A83FA5 /* LiveGamesVC + Action.swift */,
+			);
+			path = LiveGames;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,10 +510,12 @@
 				1AE135772CABB27700145E75 /* RecentResultsView.swift in Sources */,
 				1AD624572CA7B0280002F2AE /* MainVC + Action.swift in Sources */,
 				1A7263B42CB867670018E69B /* TopPlayersVC + Action.swift in Sources */,
+				1AFA9F7D2CB9C4D400A83FA5 /* LiveGamesVC + Action.swift in Sources */,
 				6C7DFCDF2CB43BB40044FDFB /* SoccerView.swift in Sources */,
 				1A7263D12CB96BE60018E69B /* NewsDetailsViewController.swift in Sources */,
 				1AD624552CA78DFC0002F2AE /* MainView.swift in Sources */,
 				6C7DFCE32CB43E950044FDFB /* SceneDelegate+Extension.swift in Sources */,
+				1AFA9F752CB9B68000A83FA5 /* LiveGamesViewController.swift in Sources */,
 				1A6B33FA2CAB9D36005A74FE /* DateHelper.swift in Sources */,
 				1AD624602CA8B3CE0002F2AE /* MatchColletionViewCell.swift in Sources */,
 				1AD624772CAB940F0002F2AE /* DetailsView.swift in Sources */,
@@ -502,6 +527,7 @@
 				1AFA9F702CB97FD100A83FA5 /* FavouritesViewModel.swift in Sources */,
 				1A7263B92CB867CD0018E69B /* LeagueCollectionViewCell.swift in Sources */,
 				1A7263AF2CB819ED0018E69B /* TopPlayersViewController.swift in Sources */,
+				1AFA9F792CB9B7F800A83FA5 /* LiveGameCollectionViewCell.swift in Sources */,
 				1A6B33FC2CAB9E23005A74FE /* DetailsVC + Action.swift in Sources */,
 				1A93854B2CABABD800CC9B7A /* LastFiveMatchesView.swift in Sources */,
 				1A7263C52CB891670018E69B /* PlayerStatsVC + Action.swift in Sources */,
@@ -510,6 +536,7 @@
 				1AD624702CAB72470002F2AE /* FilterView.swift in Sources */,
 				1A7263C12CB889110018E69B /* BaseInfoView.swift in Sources */,
 				1A7263BB2CB870440018E69B /* PlayerCollectionViewCell.swift in Sources */,
+				1AFA9F7B2CB9BAA100A83FA5 /* LiveGameViewModel.swift in Sources */,
 				1A38000A2CABC1D800321B8C /* ErrorViewController.swift in Sources */,
 				1A83C4B22CABA4610092A6D5 /* TeamSelectionView.swift in Sources */,
 				1AD6246E2CAB651A0002F2AE /* MainVC + sort.swift in Sources */,
@@ -519,6 +546,7 @@
 				1AFA9F692CB9775200A83FA5 /* FavouritesManager.swift in Sources */,
 				6C7DFCE12CB43BDF0044FDFB /* UIApplication+Extension.swift in Sources */,
 				1AEE3DFF2CA7787700C93E60 /* Season.swift in Sources */,
+				1AFA9F772CB9B79300A83FA5 /* LiveGamesVC + CollectionView.swift in Sources */,
 				1A7263B62CB8677A0018E69B /* TopPlayerVC + CollectionView.swift in Sources */,
 				1AFA9F6C2CB97E7500A83FA5 /* FavouritesViewController.swift in Sources */,
 				1A7263BF2CB8875A0018E69B /* PlayerStatsViewController.swift in Sources */,
