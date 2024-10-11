@@ -72,14 +72,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         backview.addSubview(imageView)
         backview.addSubview(newsTitleLabel)
         backview.addSubview(infoLabel)
-//        addSubview(separatorLineView)
     }
     
     private func setupConstraints() {
-//        backview.snp.makeConstraints { make in
-//            make.trailing.top.bottom.equalToSuperview()
-//            make.leading.equalTo(imageView.snp.trailing)
-//        }
         backview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

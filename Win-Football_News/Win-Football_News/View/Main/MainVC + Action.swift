@@ -9,6 +9,7 @@ extension MainViewController {
         filterButton.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)
         topButton.addTarget(self, action: #selector(topPressed), for: .touchUpInside)
         newsButton.addTarget(self, action: #selector(newsPressed), for: .touchUpInside)
+        favouritesButton.addTarget(self, action: #selector(favouritesPressed), for: .touchUpInside)
         
         sortView.cancelButton.addTarget(self, action: #selector(cancelSortPressed), for: .touchUpInside)
         sortView.earlierMatchesFirst.addTarget(self, action:#selector(sortByEarlier), for: .touchUpInside)
@@ -21,6 +22,12 @@ extension MainViewController {
         filterView.uclButton.addTarget(self, action: #selector(uclPressed), for: .touchUpInside)
         filterView.applyFilter.addTarget(self, action: #selector(applyPressed), for: .touchUpInside)
         filterView.cancelButton.addTarget(self, action: #selector(cancelFilterPressed), for: .touchUpInside)
+    }
+    
+    @objc
+    func favouritesPressed() {
+        let vc = FavouritesViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc

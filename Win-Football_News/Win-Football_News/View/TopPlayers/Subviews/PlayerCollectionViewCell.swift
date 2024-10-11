@@ -5,6 +5,12 @@ import UIKit
 class PlayerCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "PlayerCollectionViewCell"
+    private var isFavourite: Bool = false
+    var isFavouritesVC: Bool = false
+    
+    weak var delegate: FavouritesViewControllerDelegate?
+    
+    var playerData: Player!
     
     let backView: UIView = {
         let view = UIView()
@@ -110,6 +116,14 @@ class PlayerCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let isFavouriteButton: UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(named: "favourite"), for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.backgroundColor = .clear
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         congigure()
@@ -122,6 +136,7 @@ class PlayerCollectionViewCell: UICollectionViewCell {
     private func congigure() {
         setupSubviews()
         setupConstraints()
+        isFavouriteButton.addTarget(self, action: #selector(favouriteButtonTapped), for: .touchUpInside)
     }
     
     private func setupSubviews() {
@@ -138,6 +153,7 @@ class PlayerCollectionViewCell: UICollectionViewCell {
         self.addSubview(pasBackView)
         pasBackView.addSubview(paslabel)
         pasBackView.addSubview(pas)
+        backView.addSubview(isFavouriteButton)
     }
     
     private func setupConstraints() {
@@ -208,9 +224,16 @@ class PlayerCollectionViewCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-15)
         }
+        
+        isFavouriteButton.snp.makeConstraints { make in
+            make.size.equalTo(21)
+            make.top.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-10)
+        }
     }
     
-    public func setupCell(player: Player) {
+    public func setupCell(player: Player, isFavouritePlayer: Bool) {
+        playerData = player
         name.text = player.name
         rating.text = player.rating
         sho.text = player.sho
@@ -218,5 +241,39 @@ class PlayerCollectionViewCell: UICollectionViewCell {
         
         playerid.text = String(player.id)
         playerPhoto.image = UIImage(named: player.imageName)
+        
+        isFavourite = isFavouritePlayer
+        if isFavourite {
+            isFavouriteButton.setImage(UIImage(named: "favouriteSelected"), for: .normal)
+        } else {
+            isFavouriteButton.setImage(UIImage(named: "favourite"), for: .normal)
+        }
+    }
+    
+    @objc private func favouriteButtonTapped() {
+        isFavourite.toggle()
+        print("favouritesPressed")
+        let imageName = isFavourite ? "favouriteSelected" : "favourite"
+        isFavouriteButton.setImage(UIImage(named: imageName), for: .normal)
+        var leagueIndex: Int
+        
+        switch playerData.league {
+        case .premierLeague:
+            leagueIndex = 0
+        case .laLiga:
+            leagueIndex = 1
+        case .serieA:
+            leagueIndex = 2
+        default:
+            leagueIndex = 3
+        }
+        if isFavourite {
+            FavouritesManager.shared.addFavourite(leagueId: leagueIndex, playerId: playerData.id)
+        } else {
+            FavouritesManager.shared.removeFavourite(leagueId: leagueIndex, playerId: playerData.id)
+            if isFavouritesVC {
+                delegate?.reloadCollection()
+            }
+        }
     }
 }

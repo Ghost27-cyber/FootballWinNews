@@ -51,7 +51,20 @@ extension TopPlayersViewController: UICollectionViewDataSource, UICollectionView
             guard let player = viewModel.getPlayerFrom(league: currentleague, playerId: indexPath.row + 1) else {
                 return UICollectionViewCell()
             }
-            cell.setupCell(player: player)
+            var leagueIndex: Int
+            switch player.league {
+            case .premierLeague:
+                leagueIndex = 0
+            case .laLiga:
+                leagueIndex = 1
+            case .serieA:
+                leagueIndex = 2
+            default:
+                leagueIndex = 3
+            }
+            
+            let isFavouritePlayer = FavouritesManager.shared.isFavourite(leagueId: leagueIndex, playerId: player.id)
+            cell.setupCell(player: player, isFavouritePlayer: isFavouritePlayer)
             return cell
         }
     }

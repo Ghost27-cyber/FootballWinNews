@@ -21,11 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         showFootballNews()
         start()
         
+        let favouritesViewModel = FavouritesViewModel()
+        print(favouritesViewModel.favouritesCount)
+        
     }
 
     func start() {
         let nc = UINavigationController(rootViewController: MainViewController())
-//        let nc = UINavigationController(rootViewController: NewsViewController())
+//        let nc = UINavigationController(rootViewController: FavouritesViewController())
         nc.navigationBar.isHidden = true
         window?.rootViewController = nc
         window?.makeKeyAndVisible()
