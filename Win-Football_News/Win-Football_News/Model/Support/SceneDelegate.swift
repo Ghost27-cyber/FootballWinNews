@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func start() {
-//        let nc = UINavigationController(rootViewController: MainViewController())
-        let nc = UINavigationController(rootViewController: TopPlayersViewController())
+        let nc = UINavigationController(rootViewController: MainViewController())
+//        let nc = UINavigationController(rootViewController: NewsViewController())
         nc.navigationBar.isHidden = true
         window?.rootViewController = nc
         window?.makeKeyAndVisible()

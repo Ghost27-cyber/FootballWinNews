@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-extension TopPlayersViewController {
+extension NewsDetailsViewController {
     func setupButton() {
         backButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
     }

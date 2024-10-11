@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "skysports-peter-cormack-liverpool_6713196-2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "skysports-peter-cormack-liverpool_6713196-2-2.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "skysports-peter-cormack-liverpool_6713196-2-3.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

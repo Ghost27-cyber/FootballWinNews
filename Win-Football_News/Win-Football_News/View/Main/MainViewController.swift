@@ -35,22 +35,22 @@ class MainViewController: UIViewController, MainViewModelDelegate {
     }()
     
     public let footerView: UIView = {
-           let view = UIView()
-           let button = UIButton()
-           button.setTitle("Load More", for: .normal)
-           button.setTitleColor(.white, for: .normal)
-           button.backgroundColor = Resources.Colors.darkBlueColor
-           button.layer.cornerRadius = 10
-           button.addTarget(self, action: #selector(loadMoreCells), for: .touchUpInside)
-           button.translatesAutoresizingMaskIntoConstraints = false
-           view.addSubview(button)
-           view.isHidden = true // Скрываем кнопку по умолчанию
-           button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-           button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-           button.heightAnchor.constraint(equalToConstant: 47).isActive = true
-           button.widthAnchor.constraint(equalToConstant: 209).isActive = true
-           return view
-       }()
+       let view = UIView()
+       let button = UIButton()
+       button.setTitle("Load More", for: .normal)
+       button.setTitleColor(.white, for: .normal)
+       button.backgroundColor = Resources.Colors.darkBlueColor
+       button.layer.cornerRadius = 10
+       button.addTarget(self, action: #selector(loadMoreCells), for: .touchUpInside)
+       button.translatesAutoresizingMaskIntoConstraints = false
+       view.addSubview(button)
+       view.isHidden = true
+       button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+       button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+       button.heightAnchor.constraint(equalToConstant: 47).isActive = true
+       button.widthAnchor.constraint(equalToConstant: 209).isActive = true
+       return view
+   }()
     
     public let filterButton: UIButton = {
         let button = UIButton()
@@ -118,12 +118,6 @@ class MainViewController: UIViewController, MainViewModelDelegate {
     }
 
     func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
         view.addSubview(loaderView)
         loaderView.isHidden = true
         loaderView.snp.makeConstraints { make in
@@ -132,9 +126,6 @@ class MainViewController: UIViewController, MainViewModelDelegate {
     }
     
     func startLoadingAnimation() {
-//        activityIndicator.isHidden = false
-//        self.view.bringSubviewToFront(activityIndicator)
-//        activityIndicator.startAnimating()
         loaderView.isHidden = false
         self.view.bringSubviewToFront(loaderView)
         loaderView.setupLoading()

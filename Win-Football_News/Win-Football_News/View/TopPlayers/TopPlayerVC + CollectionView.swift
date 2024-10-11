@@ -13,17 +13,18 @@ extension TopPlayersViewController: UICollectionViewDataSource, UICollectionView
         
         leaguesCollectionView.register(LeagueCollectionViewCell.self, forCellWithReuseIdentifier: LeagueCollectionViewCell.reuseId)
         topPlayersCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: PlayerCollectionViewCell.reuseId)
-
-        
-        
+    
    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let firstIndexPath = IndexPath(row: 0, section: 0)
-        leaguesCollectionView.selectItem(at: firstIndexPath, animated: false, scrollPosition: .centeredHorizontally)
-        collectionView(leaguesCollectionView, didSelectItemAt: firstIndexPath)
+        if isFirstLoad {
+            isFirstLoad = false
+            
+            let firstIndexPath = IndexPath(row: 0, section: 0)
+            leaguesCollectionView.selectItem(at: firstIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+            collectionView(leaguesCollectionView, didSelectItemAt: firstIndexPath)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,6 +82,11 @@ extension TopPlayersViewController: UICollectionViewDataSource, UICollectionView
                     }
                 }
             }
+        } else {
+            let vc = PlayerStatsViewController()
+            let player = viewModel.getPlayerFrom(league: currentleague, playerId: indexPath.row + 1)
+            vc.player = player
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

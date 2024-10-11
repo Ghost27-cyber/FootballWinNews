@@ -2,37 +2,12 @@
 import Foundation
 import UIKit
 
-class PlayerCollectionViewCell: UICollectionViewCell {
-    
-    static let reuseId = "PlayerCollectionViewCell"
-    
-    let backView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    let playerid: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 26, weight: .semibold)
-        label.textColor = .black
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let playerPhoto: UIImageView = {
-       let im = UIImageView()
-        im.contentMode = .scaleAspectFit
-        return im
-    }()
+class InfoAboutPlayerView: UIView {
     
     let name: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textColor = .black
-        label.textAlignment = .center
         return label
     }()
     
@@ -110,67 +85,63 @@ class PlayerCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let text: UILabel = {
+       let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        congigure()
+        configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func congigure() {
+    private func configure() {
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 16
+        self.clipsToBounds = true
         setupSubviews()
         setupConstraints()
     }
     
     private func setupSubviews() {
-        self.addSubview(backView)
-        self.addSubview(playerid)
-        self.addSubview(playerPhoto)
-        self.addSubview(name)
-        self.addSubview(overallRatingLabel)
-        self.addSubview(ratingBackView)
-        self.addSubview(rating)
-        self.addSubview(shoBackView)
+        addSubview(name)
+        addSubview(overallRatingLabel)
+        addSubview(ratingBackView)
+        addSubview(rating)
+        addSubview(shoBackView)
         shoBackView.addSubview(sholabel)
         shoBackView.addSubview(sho)
-        self.addSubview(pasBackView)
+        addSubview(pasBackView)
         pasBackView.addSubview(paslabel)
         pasBackView.addSubview(pas)
+        addSubview(text)
     }
     
     private func setupConstraints() {
-        backView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        playerid.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(9)
-        }
-        
-        playerPhoto.snp.makeConstraints { make in
-            make.size.equalTo(63)
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(39)
-        }
-        
         name.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(8)
-            make.leading.equalTo(playerPhoto.snp.trailing).offset(17)
+            make.top.equalToSuperview().offset(20)
+            make.centerX.equalToSuperview()
         }
         
         overallRatingLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(26)
-            make.leading.equalTo(name.snp.leading)
+            make.top.equalTo(name.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
         }
         
         ratingBackView.snp.makeConstraints { make in
             make.width.equalTo(51)
             make.height.equalTo(23)
-            make.leading.equalTo(name.snp.leading)
-            make.bottom.equalToSuperview().offset(-6)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(overallRatingLabel.snp.bottom).offset(2)
         }
         
         rating.snp.makeConstraints { make in
@@ -178,10 +149,10 @@ class PlayerCollectionViewCell: UICollectionViewCell {
         }
         
         shoBackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(8)
+            make.centerY.equalTo(ratingBackView.snp.centerY)
             make.width.equalTo(84)
             make.height.equalTo(25)
-            make.trailing.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(39)
         }
         
         sholabel.snp.makeConstraints { make in
@@ -194,10 +165,10 @@ class PlayerCollectionViewCell: UICollectionViewCell {
         }
         
         pasBackView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-8)
+            make.centerY.equalTo(ratingBackView.snp.centerY)
             make.width.equalTo(84)
             make.height.equalTo(25)
-            make.trailing.equalToSuperview().offset(-40)
+            make.trailing.equalToSuperview().offset(-39)
         }
         
         paslabel.snp.makeConstraints { make in
@@ -208,15 +179,11 @@ class PlayerCollectionViewCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-15)
         }
-    }
-    
-    public func setupCell(player: Player) {
-        name.text = player.name
-        rating.text = player.rating
-        sho.text = player.sho
-        pas.text = player.pas
         
-        playerid.text = String(player.id)
-        playerPhoto.image = UIImage(named: player.imageName)
+        text.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(17)
+            make.trailing.equalToSuperview().offset(-17)
+            make.top.equalTo(ratingBackView.snp.bottom).offset(13)
+        }
     }
 }

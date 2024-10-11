@@ -2,6 +2,7 @@
 import Foundation
 import UIKit
 
+
 class TopPlayersViewController: UIViewController {
     
     var viewModel = TopPlayersViewModel()
@@ -17,7 +18,7 @@ class TopPlayersViewController: UIViewController {
     let topPlayersTitle: UILabel = {
        let label = UILabel()
         label.text = "TOP PLAYERS"
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.textColor = .white
         return label
     }()
@@ -64,14 +65,18 @@ class TopPlayersViewController: UIViewController {
         return collectionView
     }()
     
+    var isFirstLoad = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
+
     
     private func configure() {
         setupUI()
         setupCollectionView()
+        setupButton()
     }
     
     private func setupUI() {
@@ -118,4 +123,6 @@ class TopPlayersViewController: UIViewController {
             make.bottom.equalToSuperview()
         }
     }
+    
+    
 }
