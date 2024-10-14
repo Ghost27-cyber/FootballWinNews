@@ -101,6 +101,16 @@ class MainViewController: UIViewController, MainViewModelDelegate {
         return button
     }()
     
+    public var playButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("PLAY GAME", for: .normal)
+        button.backgroundColor = Resources.Colors.darkBlueColor
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    
     public let loaderView = LoadingView()
 
     override func viewDidLoad() {
@@ -211,6 +221,14 @@ class MainViewController: UIViewController, MainViewModelDelegate {
                 make.trailing.equalToSuperview().offset(-17)
                 make.bottom.equalToSuperview()
                 make.top.equalTo(topButton.snp.bottom).offset(23)
+            }
+            
+            view.addSubview(playButton)
+            playButton.snp.makeConstraints { make in
+                make.height.equalTo(28)
+                make.leading.equalTo(logoImage.snp.trailing).offset(11)
+                make.trailing.equalTo(liveMatchesButton.snp.leading).offset(-11)
+                make.centerY.equalTo(liveMatchesButton.snp.centerY)
             }
             
         } else {
