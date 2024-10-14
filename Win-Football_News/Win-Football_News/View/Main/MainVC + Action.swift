@@ -11,6 +11,7 @@ extension MainViewController {
         newsButton.addTarget(self, action: #selector(newsPressed), for: .touchUpInside)
         favouritesButton.addTarget(self, action: #selector(favouritesPressed), for: .touchUpInside)
         liveMatchesButton.addTarget(self, action: #selector(livePressed), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(playPressed), for: .touchUpInside)
         
         sortView.cancelButton.addTarget(self, action: #selector(cancelSortPressed), for: .touchUpInside)
         sortView.earlierMatchesFirst.addTarget(self, action:#selector(sortByEarlier), for: .touchUpInside)
@@ -23,6 +24,12 @@ extension MainViewController {
         filterView.uclButton.addTarget(self, action: #selector(uclPressed), for: .touchUpInside)
         filterView.applyFilter.addTarget(self, action: #selector(applyPressed), for: .touchUpInside)
         filterView.cancelButton.addTarget(self, action: #selector(cancelFilterPressed), for: .touchUpInside)
+    }
+    
+    @objc
+    func playPressed() {
+        let vc = GameMenuViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc
